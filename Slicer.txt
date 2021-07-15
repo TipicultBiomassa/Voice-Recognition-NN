@@ -1,0 +1,18 @@
+import pydub
+from pydub import AudioSegment
+import glob
+
+
+
+files = [AudioSegment.from_wav(wav) for wav in glob.glob("./Elcin/*.wav")]
+counter = 0
+print(files)
+combined = AudioSegment.empty()
+for file in files:
+    #combined += file
+    file = file.set_frame_rate(16000)
+    file = file.set_channels(1)
+    file.export("./Elcin2/%s.wav"%(counter), format="wav")
+    counter=counter+1
+
+#combined.export("./EltsinFinal.wav", format="wav")
